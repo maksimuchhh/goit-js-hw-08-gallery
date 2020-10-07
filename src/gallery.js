@@ -32,11 +32,7 @@ function openModal(e) {
   const modal = document.querySelector(".lightbox");
   modal.classList.add("is-open");
   e.preventDefault();
-  const fullSizeImage = e.target.dataset.source;
-  const imageInModal = document.querySelector(".lightbox__image");
-  imageInModal.setAttribute("src", fullSizeImage);
-  const description = e.target.getAttribute("alt");
-  imageInModal.setAttribute("alt", description);
+  importFullSizeImage(e);
 }
 function closeModal(e) {
   if (
@@ -50,6 +46,16 @@ function closeModal(e) {
   }
   const modal = document.querySelector(".lightbox");
   modal.classList.remove("is-open");
+  deleteSourceFromModal();
+}
+function importFullSizeImage(e) {
+  const fullSizeImage = e.target.dataset.source;
+  const imageInModal = document.querySelector(".lightbox__image");
+  imageInModal.setAttribute("src", fullSizeImage);
+  const description = e.target.getAttribute("alt");
+  imageInModal.setAttribute("alt", description);
+}
+function deleteSourceFromModal(params) {
   const imageInModal = document.querySelector(".lightbox__image");
   imageInModal.setAttribute("src", "");
 }
